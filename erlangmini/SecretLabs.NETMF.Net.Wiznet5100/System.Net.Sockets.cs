@@ -477,6 +477,7 @@ namespace System.Net.Sockets
                     m_wiznetChip.Receive(m_wiznetSocketIndex, m_UdpReceiveHeaderBuffer, 0, m_UdpReceiveHeaderBufferLength);
                     // validate that we have received all the data from this datagram
                     m_UdpReceiveBufferDataSize = (UInt16)((m_UdpReceiveHeaderBuffer[6] * 0x100) + m_UdpReceiveHeaderBuffer[7]);
+                    Debug.Print("ReceiveFrom data size: " + m_UdpReceiveBufferDataSize);
                     if (bytesToRead < m_UdpReceiveHeaderBufferLength + m_UdpReceiveBufferDataSize)
                         return 0; // if we have not received the entire datagram, return with nothing.
 
@@ -604,6 +605,7 @@ namespace System.Net.Sockets
                                 m_wiznetChip.Peek(m_wiznetSocketIndex, m_UdpReceiveHeaderBuffer, 0, m_UdpReceiveHeaderBufferLength);
                                 // validate that we have received all the data from this datagram
                                 m_UdpReceiveBufferDataSize = (UInt16)((m_UdpReceiveHeaderBuffer[6] * 0x100) + m_UdpReceiveHeaderBuffer[7]);
+                                Debug.Print("Available data size: " + m_UdpReceiveBufferDataSize);
                                 if (bytesToRead < m_UdpReceiveHeaderBufferLength + m_UdpReceiveBufferDataSize)
                                     return 0; // if we have not received the entire datagram, we effectively have no data available.
 
